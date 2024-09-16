@@ -43,6 +43,4 @@ To preview the production build locally, use:
 * Vue 3
 * Sass
 * Vite
-* Netlify 
-
 --

@@ -43,9 +43,32 @@ interface CommentsResponse {
 	}
 }
 
-export async function fetchComments(): Promise<Comment[]> {
-	const response = await fetch(COMMENTS_API_URL)
-	const data: CommentsResponse = await response.json()
+interface FetchCommentsState {
+	comments: Comment[] | null
+	isLoading: boolean
+	error: string | null
+}
 
-	return data?.data?.commentQueries?.list?.comments || []
+export async function fetchComments(): Promise<FetchCommentsState> {
+	const state: FetchCommentsState = {
+		comments: null,
+		isLoading: true,
+		error: null
+	}
+
+	try {
+		const response = await fetch(COMMENTS_API_URL)
+		if (!response.ok) {
+			throw new Error(`Error: ${response.statusText}`)
+		}
+
+		const data: CommentsResponse = await response.json()
+		state.comments = data?.data?.commentQueries?.list?.comments || []
+	} catch (error) {
+		state.error = error instanceof Error ? error.message : 'An unknown error occurred'
+	} finally {
+		state.isLoading = false
+	}
+
+	return state
 }

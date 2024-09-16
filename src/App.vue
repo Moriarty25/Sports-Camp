@@ -7,9 +7,11 @@ import AppCommentForm from './components/AppCommentForm.vue'
 import AppButton from './components/AppButton.vue'
 import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
+import IconLoader from './components/icons/IconLoader.vue'
 
 const items = ref<Comment[]>([])
-
+const isLoading = ref(false)
+const error = ref<string | null>(null)
 const commentText = ref('')
 const selectedCommentId = ref<string | null>(null)
 
@@ -17,7 +19,6 @@ function handleReplyCommentSend(replyText: string) {
 	const parentComment = items.value.find((i) => i.id === selectedCommentId.value)
 
 	if (!parentComment) {
-		console.error(`Не нашли комментарий с id ${selectedCommentId.value}`)
 		return
 	}
 
@@ -40,7 +41,7 @@ function handleReplyCommentSend(replyText: string) {
 			: null,
 		author: {
 			nick: 'Hector Mariano',
-			id:  uuidv4(),
+			id: uuidv4(),
 			picture: {
 				url: '/public/defaultUserPhoto.png'
 			}
@@ -64,7 +65,7 @@ function handleCommentSend() {
 		parentComment: null,
 		author: {
 			nick: 'Hector Mariano',
-			id:  uuidv4(),
+			id: uuidv4(),
 			picture: {
 				url: '/public/defaultUserPhoto.png'
 			}
@@ -77,15 +78,35 @@ function updateSelectedCommentId(newId: string | null) {
 	selectedCommentId.value = newId
 }
 
-onMounted(async () => {
-	items.value = await fetchComments()
+async function loadComments() {
+	isLoading.value = true
+	error.value = null
+
+	try {
+		const { comments } = await fetchComments()
+		items.value = comments ? comments : []
+	} catch {
+		error.value = 'Ошибка при загрузке комментариев с сервера'
+	} finally {
+		isLoading.value = false
+	}
+}
+
+onMounted(() => {
+	loadComments()
 })
 </script>
 
 <template>
 	<main class="comments">
 		<div class="comments__title-wrapper">
-			<div class="comments__title">{{ items.length }} комментариев</div>
+			<div class="comments__title">
+				<template v-if="isLoading">
+					<IconLoader color="black" size="m" />
+				</template>
+				<template v-else>{{ items.length }} </template>
+				комментариев
+			</div>
 		</div>
 		<div class="comments__header">
 			<div class="comments__filter">
@@ -108,7 +129,10 @@ onMounted(async () => {
 				/>
 			</div>
 		</div>
-		<div class="comments__list">
+		<div v-if="isLoading" class="comments__list comments__list--loading">
+			<IconLoader color="green" size="l" />
+		</div>
+		<div class="comments__list" v-else>
 			<div class="comments__list-item" v-for="item in items" :key="item.id">
 				<AppComment
 					:id="item.id"
@@ -141,6 +165,7 @@ onMounted(async () => {
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		display: flex;
 
 		&-wrapper {
 			display: flex;
@@ -178,6 +203,10 @@ onMounted(async () => {
 		&-item {
 			padding: 0 8px;
 		}
+	}
+
+	&--loading {
+		align-items: center;
 	}
 }
 

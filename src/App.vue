@@ -13,14 +13,13 @@ const commentsList = ref<Comment[]>([])
 const isLoading = ref(false)
 const error = ref<string | null>(null)
 const commentText = ref('')
-const selectedCommentId = ref<string | null>(null)
+const defaultUserPhotoSrc =
+	'https://photobooth.cdn.sports.ru/preset/avatars/svg/purple/en/j.svg?f=svg&q=80'
 
-function handleReplyCommentSend(replyText: string) {
-	const parentComment = commentsList.value.find((i) => i.id === selectedCommentId.value)
+function handleReplyCommentSend(replyText: string, commentId: string) {
+	const parentComment = commentsList.value.find((i) => i.id === commentId)
 
-	if (!parentComment) {
-		return
-	}
+	if (!parentComment) return
 
 	commentsList.value.push({
 		id: uuidv4(),
@@ -40,15 +39,13 @@ function handleReplyCommentSend(replyText: string) {
 				}
 			: null,
 		author: {
-			nick: 'Hector Mariano',
+			nick: 'John Doe',
 			id: uuidv4(),
 			picture: {
-				url: '/public/defaultUserPhoto.png'
+				url: defaultUserPhotoSrc
 			}
 		}
 	})
-
-	selectedCommentId.value = null
 }
 
 function handleCommentSend() {
@@ -64,18 +61,14 @@ function handleCommentSend() {
 		},
 		parentComment: null,
 		author: {
-			nick: 'Hector Mariano',
+			nick: 'John Doe',
 			id: uuidv4(),
 			picture: {
-				url: '/public/defaultUserPhoto.png'
+				url: defaultUserPhotoSrc
 			}
 		}
 	})
 	commentText.value = ''
-}
-
-function updateSelectedCommentId(newId: string | null) {
-	selectedCommentId.value = newId
 }
 
 async function loadComments() {
@@ -132,7 +125,7 @@ onMounted(async () => {
 		<div v-if="isLoading" class="comments__list comments__list--loading">
 			<IconLoader color="green" size="l" />
 		</div>
-		<div class="comments__list" v-else>
+		<div v-else class="comments__list">
 			<div class="comments__list-item" v-for="item in commentsList" :key="item.id">
 				<AppComment
 					:id="item.id"
@@ -142,7 +135,6 @@ onMounted(async () => {
 					:publishedAt="item.published.bunin"
 					:parentComment="item.parentComment"
 					:author="item.author"
-					@update:selectedCommentId="updateSelectedCommentId"
 					@replyCommentSend="handleReplyCommentSend"
 				/>
 			</div>
@@ -203,10 +195,10 @@ onMounted(async () => {
 		&-item {
 			padding: 0 8px;
 		}
-	}
 
-	&--loading {
-		align-items: center;
+		&--loading {
+			align-items: center;
+		}
 	}
 }
 
@@ -224,22 +216,6 @@ onMounted(async () => {
 @media (min-width: 1024px) {
 	.comments {
 		padding: 64px 80px;
-	}
-
-	header {
-		display: flex;
-		place-items: center;
-		padding-right: calc(var(--section-gap) / 2);
-	}
-
-	.logo {
-		margin: 0 2rem 0 0;
-	}
-
-	header .wrapper {
-		display: flex;
-		place-items: flex-start;
-		flex-wrap: wrap;
 	}
 }
 </style>

@@ -22,10 +22,10 @@ const { color = 'black', size = 'm' } = defineProps<Props>()
 		fill="none"
 	>
 		<path
-        :class="{
-			'loader--green': color === 'green',
-			'loader--black': color === 'black'
-		}"
+			:class="{
+				'loader--green': color === 'green',
+				'loader--black': color === 'black'
+			}"
 			d="M24 16C24 11.5817 20.4183 8 16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24"
 			stroke="#222222"
 			stroke-width="2"

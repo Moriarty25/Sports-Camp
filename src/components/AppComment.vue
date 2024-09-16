@@ -30,8 +30,7 @@ interface Props {
 const { isPinned, rating, id, author } = defineProps<Props>()
 
 const emit = defineEmits<{
-	(event: 'update:selectedCommentId', value: string | null): void
-	(event: 'replyCommentSend', text: string): void
+	(event: 'replyCommentSend', text: string, id: string): void
 }>()
 
 const displayedRating = rating.plus - rating.minus
@@ -39,17 +38,15 @@ const showBtnValue = ref('Показать все')
 const isExpandedAnswer = ref(false)
 const replyCommentText = ref('')
 const isReplyFormExpanded = ref(false)
+const replyVisibleSymbolCount = 40
 
 function handleReplyCommentSend() {
-	emit('replyCommentSend', replyCommentText.value)
+	emit('replyCommentSend', replyCommentText.value, id)
 	replyCommentText.value = ''
 	isReplyFormExpanded.value = false
 }
 
-
-
 function toggleReplyForm() {
-	emit('update:selectedCommentId', id)
 	isReplyFormExpanded.value = !isReplyFormExpanded.value
 }
 
@@ -66,7 +63,7 @@ function toggleShowBtn() {
 			<div class="pinned-comment__author">Закрепленно пользователем Хуан</div>
 		</div>
 		<div class="comment__toolbar">
-			<AppCommentUserInfo :nickname :publishedAt :author/>
+			<AppCommentUserInfo :nickname :publishedAt :author />
 			<AppButton isActionButton>
 				<IconMore />
 			</AppButton>
@@ -85,7 +82,7 @@ function toggleShowBtn() {
 						{{ parentComment.text }}
 					</span>
 					<AppButton
-						v-show="parentComment.text.length > 40"
+						v-show="parentComment.text.length > replyVisibleSymbolCount"
 						class="comment-answer__show-btn"
 						@click="toggleShowBtn"
 						type="toggleVisibility"

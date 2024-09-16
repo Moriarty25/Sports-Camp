@@ -16,7 +16,7 @@ const emit = defineEmits<{
 	(event: 'send'): void
 }>()
 
-const model = defineModel<string>({ required: true })
+const textareaModel = defineModel<string>({ required: true })
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null)
 const formRef = ref<HTMLFormElement | null>(null)
@@ -30,7 +30,7 @@ function handleTextareaFocusin() {
 
 function handleTextareaFocusout(event: FocusEvent) {
 	setTimeout(() => {
-		if (isFormInReply || model.value) return
+		if (isFormInReply || textareaModel.value) return
 		if (!event.relatedTarget || !formRef.value?.contains(event.relatedTarget as Node)) {
 			isTextareaFocused.value = false
 		}
@@ -70,7 +70,7 @@ onMounted(() => {
 			:placeholder="placeholder"
 			class="comment-form__textarea"
 			:class="{ 'comment-form__textarea--expanded': isTextareaFocused }"
-			v-model="model"
+			v-model.trim="textareaModel"
 			@input="autoResizeTextarea"
 		>
 		</textarea>
@@ -99,7 +99,7 @@ onMounted(() => {
 				type="action"
 				text="Отправить"
 				isSend
-				:disabled="!model"
+				:disabled="!textareaModel"
 			/>
 		</div>
 	</form>
@@ -187,8 +187,13 @@ onMounted(() => {
 		cursor: default;
 
 		&-link {
-			color: var(--color-link, var(--grey-600, #006496));
+			color: var(--dark-blue-500, #006496);
 			text-decoration: none;
+
+			:visited {
+				color: var(--dark-blue-500, #006496);
+				text-decoration: none;
+			}
 		}
 	}
 }

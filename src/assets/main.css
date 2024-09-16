@@ -29,13 +29,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Roboto';
-  src: url('./fonts/Roboto-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-}
-
 #app {
 
   /* @font-face {

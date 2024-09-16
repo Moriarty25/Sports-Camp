@@ -45,9 +45,4 @@ To preview the production build locally, use:
 * Vite
 * Netlify 
 
----
-
-## Deploy [![Netlify Status]()]()
-
-*[ Sports Camp - Comments ](/)*
 --

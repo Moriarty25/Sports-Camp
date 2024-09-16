@@ -34,6 +34,9 @@ const emit = defineEmits<{
 	(event: 'replyCommentSend', text: string): void
 }>()
 
+const displayedRating = rating.plus - rating.minus
+const showBtnValue = ref('Показать все')
+const isExpandedAnswer = ref(false)
 const replyCommentText = ref('')
 const isReplyFormExpanded = ref(false)
 
@@ -43,21 +46,9 @@ function handleReplyCommentSend() {
 	isReplyFormExpanded.value = false
 }
 
-const displayedRating = rating.plus - rating.minus
 
-const showBtnValue = ref('Показать все')
-const isExpandedAnswer = ref(false)
 
 function toggleReplyForm() {
-	console.log(
-		'click',
-		'was:',
-		isReplyFormExpanded.value,
-		'in:',
-		!isReplyFormExpanded.value,
-		'id:',
-		id
-	)
 	emit('update:selectedCommentId', id)
 	isReplyFormExpanded.value = !isReplyFormExpanded.value
 }

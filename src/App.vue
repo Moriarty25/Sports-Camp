@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { v4 as uuidv4 } from 'uuid'
+import { onMounted, ref } from 'vue'
+import { fetchComments, type Comment } from './api/comments'
 import AppComment from './components/AppComment.vue'
 import AppCommentForm from './components/AppCommentForm.vue'
 import AppButton from './components/AppButton.vue'
 import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
-import { onMounted, ref } from 'vue'
-import { fetchComments, type Comment } from './api/comments'
-import { v4 as uuidv4 } from 'uuid'
 
 const items = ref<Comment[]>([])
 

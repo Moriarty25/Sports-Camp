@@ -45,7 +45,7 @@ function handleEmitCommentSend() {
 	}
 }
 
-const autoResizeTextarea = () => {
+function autoResizeTextarea() {
 	const textarea = textareaRef.value
 	if (textarea) {
 		textarea.style.height = 'auto'

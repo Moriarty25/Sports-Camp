@@ -12,7 +12,7 @@
 ## Getting Started
 Clone git repository
 
-### `git clone https://github.com/Moriarty25/Sports-Camp.git`
+ `git clone https://github.com/Moriarty25/Sports-Camp.git`
 
 Run in the project directory:
 

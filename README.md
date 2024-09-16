@@ -1,39 +1,53 @@
 # Sports Camp
 
-This template should help get you started developing with Vue 3 in Vite.
+<h1 align="center"> Sports Camp - Comments </h1>
 
-## Recommended IDE Setup
+<h4>The service implements a mechanism for sending comments and responses to comments from other users without logic on the server side</h4>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+<p align="center"><img src="https://www.sports.ru/favicon.ico"></p>
 
-## Type Support for `.vue` Imports in TS
+----
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
+## Getting Started
+Clone git repository
 
-## Customize configuration
+### `git clone https://github.com/Moriarty25/Sports-Camp.git`
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Run in the project directory:
 
-## Project Setup
+### `npm install`
 
-```sh
-npm install
-```
+Install all dependencies.
 
-### Compile and Hot-Reload for Development
+### Development Mode
 
-```sh
-npm run dev
-```
+### `npm run dev`
 
-### Type-Check, Compile and Minify for Production
+Runs the app in the development mode. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.\
+The page will reload when you make changes. 
 
-```sh
-npm run build
-```
+### Build for Production
+To build the app for production and generate static files in the dist folder, use:
 
-### Lint with [ESLint](https://eslint.org/)
+### `npm run build`
 
-```sh
-npm run lint
-```
+### Preview Production Build
+To preview the production build locally, use:
+
+### npm run preview
+
+---
+## Stack
+* TypeScript
+* Vue 3
+* Sass
+* Vite
+* Netlify 
+
+---
+
+## Deploy [![Netlify Status]()]()
+
+*[ Sports Camp - Comments ](/)*
+--

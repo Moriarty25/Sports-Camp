@@ -7,6 +7,7 @@ import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
 import { onMounted, ref } from 'vue'
 import { fetchComments, type Comment } from './api/comments'
+import { v4 as uuidv4 } from "uuid";
 
 const items = ref<Comment[]>([])
 
@@ -22,7 +23,7 @@ function handleReplyCommentSend(replyText: string) {
 	}
 
 	items.value.push({
-		id: '111-id-45343',
+		id: uuidv4(),
 		text: replyText,
 		published: {
 			bunin: 'сейчас'
@@ -52,7 +53,7 @@ function handleReplyCommentSend(replyText: string) {
 
 function handleCommentSend() {
 	items.value.push({
-		id: '111-id-45',
+		id: uuidv4(),
 		text: commentText.value,
 		published: {
 			bunin: 'сейчас'

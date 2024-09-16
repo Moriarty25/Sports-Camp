@@ -132,7 +132,6 @@ onMounted(() => {
 		z-index: 2;
 		background: transparent;
 		border: 0.5px solid var(--grey-300, #eaeaea);
-		overflow: hidden;
 		cursor: pointer;
 
 		&--expanded {

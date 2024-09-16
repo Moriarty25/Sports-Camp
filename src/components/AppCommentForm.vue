@@ -187,8 +187,13 @@ onMounted(() => {
 		cursor: default;
 
 		&-link {
-			color: var(--color-link, var(--grey-600, #006496));
+			color: var(--dark-blue-500, #006496);
 			text-decoration: none;
+
+			:visited {
+				color: var(--dark-blue-500, #006496);
+				text-decoration: none;
+			}
 		}
 	}
 }

@@ -42,7 +42,7 @@ function handleReplyCommentSend(replyText: string) {
 			nick: 'Hector Mariano',
 			id:  uuidv4(),
 			picture: {
-				url: '/src/assets/defaultUserPhoto.png'
+				url: '/public/defaultUserPhoto.png'
 			}
 		}
 	})
@@ -66,7 +66,7 @@ function handleCommentSend() {
 			nick: 'Hector Mariano',
 			id:  uuidv4(),
 			picture: {
-				url: '/src/assets/defaultUserPhoto.png'
+				url: '/public/defaultUserPhoto.png'
 			}
 		}
 	})

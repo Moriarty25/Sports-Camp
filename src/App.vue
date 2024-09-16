@@ -9,20 +9,20 @@ import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
 import IconLoader from './components/icons/IconLoader.vue'
 
-const items = ref<Comment[]>([])
+const commentsList = ref<Comment[]>([])
 const isLoading = ref(false)
 const error = ref<string | null>(null)
 const commentText = ref('')
 const selectedCommentId = ref<string | null>(null)
 
 function handleReplyCommentSend(replyText: string) {
-	const parentComment = items.value.find((i) => i.id === selectedCommentId.value)
+	const parentComment = commentsList.value.find((i) => i.id === selectedCommentId.value)
 
 	if (!parentComment) {
 		return
 	}
 
-	items.value.push({
+	commentsList.value.push({
 		id: uuidv4(),
 		text: replyText,
 		published: {
@@ -52,7 +52,7 @@ function handleReplyCommentSend(replyText: string) {
 }
 
 function handleCommentSend() {
-	items.value.push({
+	commentsList.value.push({
 		id: uuidv4(),
 		text: commentText.value,
 		published: {
@@ -84,7 +84,7 @@ async function loadComments() {
 
 	try {
 		const { comments } = await fetchComments()
-		items.value = comments ? comments : []
+		commentsList.value = comments ? comments : []
 	} catch {
 		error.value = 'Ошибка при загрузке комментариев с сервера'
 	} finally {
@@ -92,8 +92,8 @@ async function loadComments() {
 	}
 }
 
-onMounted(() => {
-	loadComments()
+onMounted(async () => {
+	await loadComments()
 })
 </script>
 
@@ -104,7 +104,7 @@ onMounted(() => {
 				<template v-if="isLoading">
 					<IconLoader color="black" size="m" />
 				</template>
-				<template v-else>{{ items.length }} </template>
+				<template v-else>{{ commentsList.length }} </template>
 				комментариев
 			</div>
 		</div>
@@ -133,7 +133,7 @@ onMounted(() => {
 			<IconLoader color="green" size="l" />
 		</div>
 		<div class="comments__list" v-else>
-			<div class="comments__list-item" v-for="item in items" :key="item.id">
+			<div class="comments__list-item" v-for="item in commentsList" :key="item.id">
 				<AppComment
 					:id="item.id"
 					:rating="item.rating"

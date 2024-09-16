@@ -137,6 +137,7 @@ onMounted(() => {
 		z-index: 2;
 		background: transparent;
 		border: 0.5px solid var(--grey-300, #eaeaea);
+		overflow: hidden;
 		cursor: pointer;
 
 		&--expanded {
@@ -173,6 +174,7 @@ onMounted(() => {
 
 	&__action-bar {
 		display: flex;
+		gap: 16px;
 		padding: 16px;
 		justify-content: space-between;
 		align-items: center;
@@ -194,6 +196,16 @@ onMounted(() => {
 			color: var(--color-link, var(--grey-600, #006496));
 			text-decoration: none;
 		}
+	}
+}
+
+@media (max-width: 360px) {
+	.comment-form__icons:not(.comment-form__icons--expanded) {
+		display: none;
+	}
+
+	.comment-form__action-bar {
+		flex-direction: column;
 	}
 }
 </style>

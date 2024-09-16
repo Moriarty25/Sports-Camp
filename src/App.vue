@@ -7,7 +7,7 @@ import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
 import { onMounted, ref } from 'vue'
 import { fetchComments, type Comment } from './api/comments'
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid'
 
 const items = ref<Comment[]>([])
 
@@ -139,6 +139,9 @@ onMounted(async () => {
 		font-size: 22px;
 		font-weight: 700;
 		line-height: 28px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 
 		&-wrapper {
 			display: flex;
@@ -182,7 +185,22 @@ onMounted(async () => {
 	}
 }
 
+@media (max-width: 360px) {
+	.comments {
+		padding: 24px 12px;
+	}
+
+	.comments__sort-options {
+		overflow-x: scroll;
+		width: 80%;
+	}
+}
+
 @media (min-width: 1024px) {
+	.comments {
+		padding: 64px 80px;
+	}
+
 	header {
 		display: flex;
 		place-items: center;

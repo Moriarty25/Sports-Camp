@@ -18,10 +18,10 @@ interface Props {
 	text: string
 	nickname: string
 	publishedAt: string
-	author: { nick: string, id: string, picture: {url: string} }
+	author: { nick: string; id: string; picture: { url: string } }
 	parentComment: {
 		text: string
-		author: { nick: string, id: string, picture: {url: string} }
+		author: { nick: string; id: string; picture: { url: string } }
 		id: string
 	} | null
 }
@@ -77,11 +77,7 @@ function toggleShowBtn() {
 		</div>
 		<div class="comment__toolbar">
 			<div class="user-info">
-				<img
-					:src= url
-					alt="user-photo"
-					class="user-info__avatar"
-				/>
+				<img :src="url" alt="user-photo" class="user-info__avatar" />
 				<div class="user-info__details">
 					<div class="user-info__name">
 						<div class="user-info__nickname">
@@ -106,7 +102,7 @@ function toggleShowBtn() {
 							</svg>
 						</div>
 						<!-- <div class="user-info__status">Автор</div> -->
-						<!-- <AppUserBadge>Редактор блога</AppUserBadge> -->
+						<AppUserBadge>Редактор блога</AppUserBadge>
 					</div>
 					<time class="user-info__meta">{{ publishedAt }}</time>
 				</div>
@@ -129,7 +125,7 @@ function toggleShowBtn() {
 						{{ parentComment.text }}
 					</span>
 					<AppButton
-						v-show='parentComment.text.length>100'
+						v-show="parentComment.text.length > 40"
 						class="comment-answer__show-btn"
 						@click="toggleShowBtn"
 						type="toggleVisibility"
@@ -236,9 +232,9 @@ function toggleShowBtn() {
 
 		&__content {
 			color: var(--grey-900, #505050);
-			font-size: 14px;
+			font-size: 12px;
 			font-weight: 400;
-			line-height: 24px;
+			line-height: 20px;
 		}
 
 		&__text {
@@ -305,9 +301,9 @@ function toggleShowBtn() {
 
 	&__nickname {
 		color: var(--black-700, #222);
-		font-size: 16px;
+		font-size: 14px;
 		font-weight: 500;
-		line-height: 20px;
+		line-height: 16px;
 		min-width: 0;
 		width: 100%;
 		min-width: 0;
@@ -381,5 +377,37 @@ function toggleShowBtn() {
 	width: 12px;
 	height: 12px;
 	align-items: center;
+}
+
+@media (max-width: 360px) {
+	.comment__actions {
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		gap: 16px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.user-info {
+		&__nickname {
+			font-size: 16px;
+			line-height: 20px;
+		}
+
+		&__meta {
+			font-size: 14px;
+			line-height: 20px;
+		}
+	}
+
+	.comment-content {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.comment-answer__content {
+		font-size: 14px;
+		line-height: 24px;
+	}
 }
 </style>

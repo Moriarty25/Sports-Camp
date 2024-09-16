@@ -1,0 +1,19 @@
+/* color palette */
+:root {
+	--black-700: #222222;
+    --dark-blue-500: #006496;
+    --grey-100: #F9F9F9;
+    --grey-200: #F4F4F4;
+    --grey-300: #EAEAEA;
+    --grey-400: #D8D8D8;
+    --grey-600: #7F7F7F;
+    --grey-900: #505050;
+    --green-100: #E5F7EB;
+    --green-200: #D9F2E0;
+    --green-400: #4CC36F;
+    --mint-500: #00A876;
+    --magenta-200: #FFD9E2;
+    --magenta-500: #FF003C;
+    --magenta-600: #E7001C;
+    --white-100: #FFFFFF;
+}

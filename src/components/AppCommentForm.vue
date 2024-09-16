@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import IconClip from './icons/IconClip.vue'
 import IconMoney from './icons/IconMoney.vue'
 import IconPicture from './icons/IconPicture.vue'

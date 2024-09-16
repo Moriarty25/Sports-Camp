@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppComment from './components/AppComment.vue'
 import AppCommentForm from './components/AppCommentForm.vue'
-import IconClip from './components/icons/IconClip.vue'
 import AppButton from './components/AppButton.vue'
 import IconSort from './components/icons/IconSort.vue'
 import IconStackedLines from './components/icons/IconStackedLines.vue'
@@ -40,10 +39,10 @@ function handleReplyCommentSend(replyText: string) {
 				}
 			: null,
 		author: {
-			nick: 'User',
-			id: '12323-id;e-e33e',
+			nick: 'Hector Mariano',
+			id:  uuidv4(),
 			picture: {
-				url: 'https://photobooth.cdn.sports.ru/preset/user/b/fd/221f3f95349ef8cbcf1c156dd7460.png?f=png&h=64&q=80&w=64'
+				url: '/src/assets/defaultUserPhoto.png'
 			}
 		}
 	})
@@ -64,10 +63,10 @@ function handleCommentSend() {
 		},
 		parentComment: null,
 		author: {
-			nick: 'User',
-			id: '12e23r2r',
+			nick: 'Hector Mariano',
+			id:  uuidv4(),
 			picture: {
-				url: 'https://photobooth.cdn.sports.ru/preset/user/b/fd/221f3f95349ef8cbcf1c156dd7460.png?f=png&h=64&q=80&w=64'
+				url: '/src/assets/defaultUserPhoto.png'
 			}
 		}
 	})
@@ -164,9 +163,6 @@ onMounted(async () => {
 	&__sort-options {
 		display: flex;
 		gap: 8px;
-	}
-
-	&__view-toggle {
 	}
 
 	&__form {

@@ -1,5 +1,5 @@
-@import './base.css';
-/* @import './variables.scss'; */
+@import './variables.css';
+
 
 @font-face {
   font-family: 'Roboto';
@@ -29,24 +29,23 @@
   font-style: normal;
 }
 
-#app {
-
-  /* @font-face {
-    font-family: 'Roboto';
-    src: url('./../assets/fonts/roboto-v18-cyrillic-ext_latin-500.woff2');
-  } */
-  
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	outline: none;
+	border: 0;
+	background: inherit;
 }
 
-@media (min-width: 1024px) {
-  /* body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  } */
+body {
+	color: var(--black-700, #222);
+	font-family: Roboto, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
 }

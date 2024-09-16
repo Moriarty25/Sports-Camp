@@ -121,7 +121,7 @@ const { size, withIcon } = defineProps<Props>()
 
 		@media (hover: hover) {
 			&:not([disabled]):hover {
-				background: var(--grey-400, #4cc36f);
+				background: var(--green-400, #4cc36f);
 			}
 		}
 	}

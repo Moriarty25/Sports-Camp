@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import AppUserBadge from './AppUserBadge.vue'
 import IconMinus from './icons/iconMinus.vue'
 import IconMore from './icons/IconMore.vue'
 import IconPlus from './icons/IconPlus.vue'
 import IconPushpin from './icons/IconPushpin.vue'
 import AppButton from './AppButton.vue'
 import AppCommentForm from './AppCommentForm.vue'
+import AppCommentUserInfo from './AppCommentUserInfo.vue'
 
 interface Props {
+	withBadge?: boolean
 	isPinned?: boolean
 	id: string
 	rating: {
@@ -27,7 +28,6 @@ interface Props {
 }
 
 const { isPinned, rating, id, author } = defineProps<Props>()
-const url = author.picture.url
 
 const emit = defineEmits<{
 	(event: 'update:selectedCommentId', value: string | null): void
@@ -47,7 +47,6 @@ const displayedRating = rating.plus - rating.minus
 
 const showBtnValue = ref('Показать все')
 const isExpandedAnswer = ref(false)
-//onst isReplyFormExpanded = ref(false)
 
 function toggleReplyForm() {
 	console.log(
@@ -76,37 +75,7 @@ function toggleShowBtn() {
 			<div class="pinned-comment__author">Закрепленно пользователем Хуан</div>
 		</div>
 		<div class="comment__toolbar">
-			<div class="user-info">
-				<img :src="url" alt="user-photo" class="user-info__avatar" />
-				<div class="user-info__details">
-					<div class="user-info__name">
-						<div class="user-info__nickname">
-							{{ nickname }}
-						</div>
-						<div class="user-info__label">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16"
-								fill="none"
-							>
-								<path
-									d="M14.6987 6.20491L14.9295 3.99884L12.903 3.09734L12.0018 1.07085L9.79575 1.30126L8 0L6.20458 1.30126L3.99884 1.07085L3.09734 3.09701L1.07085 3.99884L1.30126 6.20458L0 8L1.30126 9.79509L1.07052 12.0012L3.09701 12.9027L3.99818 14.9292L6.20425 14.6987L8 16L9.79542 14.6987L12.0012 14.9292L12.9027 12.903L14.9292 12.0012L14.6987 9.79542L16 8L14.6987 6.20491Z"
-									fill="#00A876"
-								/>
-								<path
-									d="M12 6.0622L6.84644 11L4 8.27273L5.10861 7.21053L6.84644 8.8756L10.8914 5L12 6.0622Z"
-									fill="white"
-								/>
-							</svg>
-						</div>
-						<!-- <div class="user-info__status">Автор</div> -->
-						<AppUserBadge>Редактор блога</AppUserBadge>
-					</div>
-					<time class="user-info__meta">{{ publishedAt }}</time>
-				</div>
-			</div>
+			<AppCommentUserInfo :nickname :publishedAt :author/>
 			<AppButton isActionButton>
 				<IconMore />
 			</AppButton>
@@ -148,7 +117,7 @@ function toggleShowBtn() {
 					<div class="rating__view">
 						<div class="rating-value">{{ displayedRating }}</div>
 					</div>
-					<AppButton type="default" isVoting votingState="minus">
+					<AppButton type="default" isVoting>
 						<div class="voting-icon">
 							<IconMinus />
 						</div>
@@ -267,66 +236,6 @@ function toggleShowBtn() {
 	}
 }
 
-.user-info {
-	display: flex;
-	align-items: center;
-	display: flex;
-	align-items: flex-start;
-	gap: 12px;
-	min-width: 0;
-
-	&__avatar {
-		width: 32px;
-		height: 32px;
-		aspect-ratio: 1;
-		border-radius: 50%;
-		background: lightgray 50% / cover no-repeat;
-	}
-
-	&__details {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		min-width: 0;
-	}
-
-	&__name {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		width: 100%;
-		min-width: 0;
-	}
-
-	&__nickname {
-		color: var(--black-700, #222);
-		font-size: 14px;
-		font-weight: 500;
-		line-height: 16px;
-		min-width: 0;
-		width: 100%;
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		min-width: 0;
-		flex-shrink: 1;
-		min-width: 0;
-	}
-
-	&__label {
-		display: flex;
-	}
-
-	&__meta {
-		color: var(--grey-600, #7f7f7f);
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-	}
-}
-
 .more-btn {
 	cursor: pointer;
 	width: 32px;
@@ -388,18 +297,6 @@ function toggleShowBtn() {
 }
 
 @media (min-width: 1024px) {
-	.user-info {
-		&__nickname {
-			font-size: 16px;
-			line-height: 20px;
-		}
-
-		&__meta {
-			font-size: 14px;
-			line-height: 20px;
-		}
-	}
-
 	.comment-content {
 		font-size: 16px;
 		line-height: 24px;

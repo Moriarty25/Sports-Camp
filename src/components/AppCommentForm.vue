@@ -32,11 +32,6 @@ function handleTextareaFocusout(event: FocusEvent) {
 	setTimeout(() => {
 		if (isFormInReply || model.value) return
 		if (!event.relatedTarget || !formRef.value?.contains(event.relatedTarget as Node)) {
-			console.log(
-				'focusout!',
-				!event.relatedTarget,
-				!formRef.value?.contains(event.relatedTarget as Node)
-			)
 			isTextareaFocused.value = false
 		}
 	}, 100)

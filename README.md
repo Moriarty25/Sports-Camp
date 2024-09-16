@@ -35,7 +35,7 @@ To build the app for production and generate static files in the dist folder, us
 ### Preview Production Build
 To preview the production build locally, use:
 
-### npm run preview
+### `npm run preview`
 
 ---
 ## Stack
@@ -43,4 +43,4 @@ To preview the production build locally, use:
 * Vue 3
 * Sass
 * Vite
---
+  

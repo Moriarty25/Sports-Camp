@@ -129,6 +129,7 @@ function toggleShowBtn() {
 						{{ parentComment.text }}
 					</span>
 					<AppButton
+						v-show='parentComment.text.length>100'
 						class="comment-answer__show-btn"
 						@click="toggleShowBtn"
 						type="toggleVisibility"
@@ -208,12 +209,9 @@ function toggleShowBtn() {
 
 	&-content {
 		color: var(--black-700, #222);
-		font-family: Roboto;
 		font-size: 14px;
-		font-style: normal;
 		font-weight: 400;
 		line-height: 20px;
-		/* 142.857% */
 	}
 
 	&-answer {
@@ -223,9 +221,7 @@ function toggleShowBtn() {
 
 		&__header {
 			color: var(--grey-600, #7f7f7f);
-			font-family: Roboto;
 			font-size: 14px;
-			font-style: normal;
 			font-weight: 500;
 			line-height: 24px;
 		}
@@ -240,12 +236,9 @@ function toggleShowBtn() {
 
 		&__content {
 			color: var(--grey-900, #505050);
-			font-family: Roboto;
 			font-size: 14px;
-			font-style: normal;
 			font-weight: 400;
 			line-height: 24px;
-			/* 171.429% */
 		}
 
 		&__text {
@@ -312,9 +305,7 @@ function toggleShowBtn() {
 
 	&__nickname {
 		color: var(--black-700, #222);
-		font-family: Roboto;
 		font-size: 16px;
-		font-style: normal;
 		font-weight: 500;
 		line-height: 20px;
 		min-width: 0;
@@ -334,9 +325,7 @@ function toggleShowBtn() {
 
 	&__meta {
 		color: var(--grey-600, #7f7f7f);
-		font-family: Roboto;
 		font-size: 12px;
-		font-style: normal;
 		font-weight: 400;
 		line-height: 16px;
 	}
@@ -368,12 +357,9 @@ function toggleShowBtn() {
 	&-value {
 		color: var(--mint-500, #00a876);
 		text-align: center;
-		font-family: Roboto;
 		font-size: 14px;
-		font-style: normal;
 		font-weight: 700;
 		line-height: 24px;
-		/* 171.429% */
 	}
 }
 
@@ -384,9 +370,7 @@ function toggleShowBtn() {
 
 	&__author {
 		color: var(--grey-600, #7f7f7f);
-		font-family: Roboto;
 		font-size: 10px;
-		font-style: normal;
 		font-weight: 400;
 		line-height: 16px;
 	}

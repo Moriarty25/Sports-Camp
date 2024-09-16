@@ -7,7 +7,6 @@ interface Props {
 	votingState?: 'plus' | 'minus'
 	isActionButton?: boolean
 	text?: string
-	// toggleShowBtn?: () => void
 	size?: 's' | 'm' | 'l'
 	isSend?: boolean
 	isSelected?: boolean
@@ -18,24 +17,6 @@ const { size, withIcon } = defineProps<Props>()
 </script>
 
 <template>
-	<!-- <button
-		type="button"
-		class="button"
-		:class="{
-			button__send: type === 'send',
-			button__reply: isReply,
-			button__icon: isIcon,
-			button__action: isActionButton,
-			'button--upvoted': votingState === 'plus',
-			'button--downvoted': votingState === 'minus'
-		}"
-	>
-		<span v-if="isReply" class="button__text">
-			<slot></slot>
-		</span>
-		<slot v-else-if="text">{{ text }}</slot>
-		<slot v-else></slot>
-	</button> -->
 	<button
 		type="button"
 		class="button"
@@ -52,7 +33,7 @@ const { size, withIcon } = defineProps<Props>()
 			'button--size-l': size === 'l',
 			'button--upvoted': votingState === 'plus',
 			'button--downvoted': votingState === 'minus',
-			'button--toggle-visibility': 'toggleVisibility',
+			'button--toggle-visibility': type ==='toggleVisibility',
 		}"
 	>
 		<span v-if="text" class="button__text">
@@ -69,6 +50,7 @@ const { size, withIcon } = defineProps<Props>()
 	justify-content: center;
 	align-items: center;
 	white-space: nowrap;
+	border-radius: 4px;
 
 	&:not([disabled]) {
 		cursor: pointer;
@@ -76,17 +58,15 @@ const { size, withIcon } = defineProps<Props>()
 
 	&__text {
 		text-align: center;
-		font-family: Roboto;
 		font-size: 12px;
 		font-weight: 700;
-		line-height: 16px; /* 133.333% */
+		line-height: 16px;
 		text-transform: uppercase;
 	}
 
 	&--voting {
 		width: 32px;
 		height: 32px;
-		border-radius: 4px;
 		display: flex;
 		align-items: center;
 		background: var(--grey-200, #f4f4f4);
@@ -94,7 +74,6 @@ const { size, withIcon } = defineProps<Props>()
 
 	&--default {
 		padding: 8px;
-		border-radius: 4px;
 		background: var(--grey-200, #f4f4f4);
 
 		&:disabled {
@@ -114,15 +93,9 @@ const { size, withIcon } = defineProps<Props>()
 		align-items: center;
 		border-radius: 16px;
 		text-align: center;
-		font-family: Roboto;
-		font-size: 12px;
-		font-style: normal;
-		font-weight: 700;
-		line-height: 16px; /* 133.333% */
 		text-transform: uppercase;
 		background: inherit;
 		color: var(--grey-600, #7f7f7f);
-		//transition: all 100ms ease;
 
 		&:disabled {
 			background: var(--grey-500, #9b9b9b);

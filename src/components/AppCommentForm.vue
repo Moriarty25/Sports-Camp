@@ -71,8 +71,6 @@ onMounted(() => {
 		ref="formRef"
 	>
 		<textarea
-			name=""
-			id=""
 			ref="textareaRef"
 			:placeholder="placeholder"
 			class="comment-form__textarea"
@@ -132,7 +130,6 @@ onMounted(() => {
 		color: var(--grey-900, #505050);
 		font-family: Roboto;
 		font-size: 16px;
-		font-style: normal;
 		font-weight: 400;
 		border-radius: 16px;
 		transition: all 300ms ease;
@@ -188,11 +185,9 @@ onMounted(() => {
 	}
 
 	&__guideline {
-		font-family: Roboto;
 		font-size: 14px;
-		font-style: normal;
 		font-weight: 400;
-		line-height: 20px; /* 142.857% */
+		line-height: 20px;
 		cursor: default;
 
 		&-link {

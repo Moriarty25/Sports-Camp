@@ -16,7 +16,6 @@
 
     &__text {
         color: var(--mint-500, #00A876);
-        font-family: Roboto;
         font-size: 12px;
         font-weight: 700;
         line-height: 20px;
@@ -24,7 +23,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        // max-width: 100%;
         min-height: 0;
     }
 }
